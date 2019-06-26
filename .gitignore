@@ -1,0 +1,4 @@
+magento-2.3/*
+!magento-2.3/install_magento
+!magento-2.3/nginx.conf.sample
+.DS_Store
