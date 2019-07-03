@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+# yarn install
+yarn run build
+# # yarn workspace ${CONCEPT} run watch -- --host ${VIRTUAL_HOST}
+yarn workspace ${CONCEPT} run watch
+
+# while true; do sleep 10; echo 1; done

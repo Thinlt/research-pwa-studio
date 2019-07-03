@@ -35,4 +35,9 @@ syncs:
         sync_strategy: 'native_osx'
         src: /Users/robert/Simi-Workspace/research-pwa-studio/magento-2.3
         sync_excludes: ['var/log', 'var/session', 'var/cache', 'var/cache*', '.git/*']
+    siminia:
+        notify_terminal: false
+        sync_strategy: 'native_osx'
+        src: /Users/robert/Simi-Workspace/github/siminia
+        sync_excludes: ['dist', 'esm', 'node_modules']
     

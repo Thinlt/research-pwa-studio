@@ -5,6 +5,7 @@ networks:
 volumes:
   magento_2_test: { external: true }
   magento_2_test_db: { external: true }
+  siminia: { external: true }
 services:
   # proxy service that creates a reverse proxy to the pwa container - https://bit.ly/2HpZJDI
   # the reverse proxy connects the SSL/TLS certs created on the local file system into the nginx container
@@ -39,7 +40,7 @@ services:
       - ./pwa-studio/packages/venia-concept/.storybook:/usr/src/app/packages/venia-concept/.storybook:rw
       - ./pwa-studio/packages/venia-concept/src:/usr/src/app/packages/venia-concept/src:rw
       - ./pwa-studio/packages/venia-concept/static:/usr/src/app/packages/venia-concept/static:rw
-      - ./pwa-studio/packages/siminia:/usr/src/app/packages/siminia:rw
+      - siminia:/usr/src/app/packages/siminia:rw
       - ./pwa-studio/packages/upward-spec:/usr/src/app/packages/upward-spec:rw
       - ./.env:/usr/src/app/packages/siminia/.env:rw
       - ./pwa-studio/docker/entrypoint:/usr/src/app/entrypoint:rw
