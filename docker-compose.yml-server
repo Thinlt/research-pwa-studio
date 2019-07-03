@@ -1,0 +1,56 @@
+version: '3'
+networks:
+  hostnet:
+    external: true
+volumes:
+  magento_2_test: { external: true }
+  magento_2_test_db: { external: true }
+services:
+  magento:
+    image: thinlt/magento:nginx-1.15-php-7.1
+    volumes:
+      - magento_2_test:/var/www/html:nocopy
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      # - 80:80
+      - 8080:80
+      - 4043:443
+    networks:
+      hostnet:
+
+  db:
+    image: mariadb:10.2
+    environment:
+      MYSQL_ROOT_PASSWORD: magento
+      MYSQL_USER: magento
+      MYSQL_PASSWORD: magento
+      MYSQL_DATABASE: magento
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - magento_2_test_db:/var/lib/mysql:nocopy
+    networks:
+      hostnet: {}
+  
+  # redis:
+  #   image: redis
+  #   networks:
+  #     hostnet: {}
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8081:80
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: magento
+    networks:
+      hostnet: {}
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 8082:8025
+    networks:
+      hostnet: {}
+
