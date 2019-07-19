@@ -1,7 +1,12 @@
 #!/usr/bin/env sh
 
 # yarn install
-yarn run build
+if [ ! -f ./build_status ]; then
+    yarn run build
+    if [ $? -eq 0 ]; then
+        echo 1 > build_status
+    fi
+fi
 # # yarn workspace ${CONCEPT} run watch -- --host ${VIRTUAL_HOST}
 yarn workspace ${CONCEPT} run watch
 
