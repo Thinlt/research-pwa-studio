@@ -18,7 +18,7 @@ services:
   pwa:
     hostname: ${PWA_STUDIO_PUBLIC_PATH}
     # build pwa using the Dockerfile from the PWD
-    image: pwa-studio_pwa
+    image: pwa-studio
     # build:
     #   context: .
     #   dockerfile: Dockerfile.dev

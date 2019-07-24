@@ -19,12 +19,12 @@ COPY packages/pwa-buildpack/package.json ./packages/pwa-buildpack/package.json
 COPY packages/upward-js/package.json ./packages/upward-js/package.json
 COPY packages/upward-spec/package.json ./packages/upward-spec/package.json
 COPY packages/venia-concept/package.json ./packages/venia-concept/package.json
-COPY packages/siminia/package.json ./packages/siminia/package.json
+# COPY packages/siminia/package.json ./packages/siminia/package.json
 COPY package.json yarn.lock babel.config.js browserslist.js magento-compatibility.js ./
 
 # install dependencies with yarn
 # RUN yarn install --frozen-lockfile
-RUN yarn install
+# RUN yarn install
 
 # copy over the rest of the package files
 COPY packages ./packages
@@ -43,13 +43,15 @@ WORKDIR /usr/src/app
 # global environment setup
 RUN apk --no-cache --virtual add \
     python \
+    make \
+    g++ \
     yarn 
 
 # copy build from previous stage
 COPY --from=build /usr/src/app .
 # node:alpine comes with a configured user and group
 RUN chown -R node:node /usr/src/app
-USER node
+USER root
 # Pass the `HOST` arg from docker-compose args and set it to the HOST
 # ARG HOST
 # command to run application

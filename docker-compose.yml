@@ -64,6 +64,7 @@ services:
     volumes:
       - magento_2_test:/var/www/html:nocopy
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - /Users/robert/Simi-Workspace/github/SimiCart-Magento2.x/app/code/Simi/Simiconnector:/var/www/html/app/code/Simi/Simiconnector
     ports:
       # - 80:80
       - 8080:80

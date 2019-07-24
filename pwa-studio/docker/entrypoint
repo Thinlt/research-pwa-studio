@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
 
-# yarn install
+# install packages
+yarn install
+
+# build if first time
 if [ ! -f ./build_status ]; then
     yarn run build
     if [ $? -eq 0 ]; then
